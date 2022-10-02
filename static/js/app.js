@@ -1,3 +1,15 @@
+function demoInfo(sample)
+{
+    console.log(sample)
+
+    d3.json("samples.json").then((data) => {
+        let metaData = data.metaData;
+        console.log(metaData);
+
+        let result = metaData.filter(sampleResult => sampleResult.id == sample);
+    })
+}
+
 function initialize()
 {
     // Load data from json file
@@ -10,7 +22,23 @@ function initialize()
     d3.json("samples.json").then((data) => {
         let sampleNames = data.names;
         console.log(sampleNames);
+
+        sampleNames.forEach((sample) => {
+            select.append("option")
+                .text(sample)
+                .property("value", sample);
+        });
+
+        let sample1 = sampleNames[0];
+
+        demoInfo(sample1)
     });
+
+}
+
+function optionChanged(item)
+{
+    console.log(item)
 }
 
 initialize();
