@@ -1,13 +1,13 @@
 
 // Function will populate metadata
 function demoInfo(sample){
-    console.log(sample)
+    //console.log(sample)
 
     // D3 to get data
-    d3.json("samples.json").then((data) => {
+    d3.json("static/js/samples.json").then((data) => {
         // Grab all metadata
-        let metaData = data.metaData;
-        //console.log(metaData);
+        let metaData = data.metadata;
+        console.log(metaData);
 
         // Filter for value of sample (should return one result in an array)
         let result = metaData.filter(sampleResult => sampleResult.id == sample);
@@ -33,7 +33,7 @@ function buildBarChart(sample){
     //let data = d3.json("samples.json");
     //console.log(data);
 
-    d3.json("samples.json").then((data) => {
+    d3.json("static/js/samples.json").then((data) => {
         let sampleData = data.samples;
         //console.log(sampleData);
 
@@ -81,7 +81,7 @@ function buildBubbleChart(sample){
     //let data = d3.json("samples.json");
     //console.log(data);
 
-    d3.json("samples.json").then((data) => {
+    d3.json("static/js/samples.json").then((data) => {
         let sampleData = data.samples;
         //console.log(sampleData);
 
@@ -123,18 +123,20 @@ function buildBubbleChart(sample){
     });
 }
 
+// Function that will run on start up
 function initialize(){
     // Load data from json file
-    //let data = d3.json("samples.json");
-    //console.log(data);
+    let data = d3.json("static/js/samples.json");
+    console.log(data);
 
     // Accesses the dropdown selector from index.html
     var select = d3.select("#selDataset");
     
-    d3.json("samples.json").then((data) => {
+    d3.json("static/js/samples.json").then((data) => {
         let sampleNames = data.names;
         //console.log(sampleNames);
 
+        // Finds one sample to load charts and demographic info
         sampleNames.forEach((sample) => {
             select.append("option")
                 .text(sample)
@@ -155,6 +157,7 @@ function initialize(){
 
 }
 
+// Function to update drop down when selection changes
 function optionChanged(item){
     // Calls function to update metadata
     demoInfo(item);
@@ -167,4 +170,5 @@ function optionChanged(item){
     buildBubbleChart(item);
 }
 
+// Calls to initialize function
 initialize();
