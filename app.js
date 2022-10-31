@@ -71,6 +71,7 @@ function buildBarChart(sample){
             title: "Top 10 Belly Button Bacteria"
         };
 
+        // Plot bar chart
         Plotly.newPlot("bar", [barChart], layout);
     });
 }
@@ -119,6 +120,7 @@ function buildBubbleChart(sample){
             xaxis: {title: "OTU ID"}
         };
 
+        // Plot bubble chart
         Plotly.newPlot("bubble", [bubbleChart], layout);
     });
 }
