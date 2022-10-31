@@ -20,7 +20,7 @@
 
 <p>Here is the final product:</p>
 
-<img src="resources/BellyButtonDashboard">
+<img src="resources/BellyButtonDashboard.png">
 
 ### Submission Requirements
 * Link to deployed site can be found <a href="https://aimeevu.github.io/belly-button-challenge/">here</a>.
